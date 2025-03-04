@@ -1,11 +1,13 @@
 from typing import List
-from pydantic import BaseModel
-from uuid import uuid4
+from pydantic import BaseModel, Field
 
 class UserMetaData(BaseModel):
-    userId: str
+    userId: str = Field(..., alias="_id") 
     organizationId: str
-    policyIds: List[uuid4] = []
-    evidenceIds: List[uuid4] = []
-    hazardIds: List[uuid4] = []
-    incidentIds: List[uuid4] = []
+    policyIds: List[str] = []
+    evidenceIds: List[str] = []
+    hazardIds: List[str] = []
+    incidentIds: List[str] = []
+
+    class Config:
+        allow_population_by_field_name = True 
