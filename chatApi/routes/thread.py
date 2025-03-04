@@ -9,7 +9,7 @@ def create_thread_endPoint(thread: ThreadCreate):
     return create_thread(thread)
 
     
-@router.get("/user/thread{userId}")
+@router.get("/user/thread/{userId}")
 def get_thread_endPoint(userId: str):
     return get_thread(userId)
 
