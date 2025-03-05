@@ -1,9 +1,10 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field
 
 class UserMetaData(BaseModel):
     userId: str = Field(..., alias="_id") 
     organizationId: str
+    threadHeading:Optional[str] = None
     policyIds: List[str] = []
     evidenceIds: List[str] = []
     hazardIds: List[str] = []

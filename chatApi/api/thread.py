@@ -4,20 +4,20 @@ from chatApi.models.thread import ThreadCreate
 import uuid
 
 
-def create_thread(thread: ThreadCreate):
-    user=users_collection.find_one({"_id": thread.userId})
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+# def create_thread(thread: ThreadCreate):
+#     user=users_collection.find_one({"_id": thread.userId})
+#     if not user:
+#         raise HTTPException(status_code=404, detail="User not found")
     
-    threadId= str(uuid.uuid4())
+#     threadId= str(uuid.uuid4())
 
-    threadData = {
-        "_id": threadId,
-        "userId": thread.userId,
-        "threadHeading": thread.threadHeading,
-    }
-    threads_collection.insert_one(threadData)
-    return {"message": "Thread created successfully", "threadId": threadData["_id"]}
+#     threadData = {
+#         "_id": threadId,
+#         "userId": thread.userId,
+#         "threadHeading": thread.threadHeading,
+#     }
+#     threads_collection.insert_one(threadData)
+#     return {"message": "Thread created successfully", "threadId": threadData["_id"]}
 
 
 
