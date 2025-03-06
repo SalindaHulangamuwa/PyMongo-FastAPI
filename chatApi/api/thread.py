@@ -31,8 +31,8 @@ def get_thread(userId: str):
 
 
 
-def get_thread_by_id(threadId: str):
-    thread = threads_collection.find({"_id": threadId}, {"_id":0,"userId":1,"threadHeading":1})  #First, find the query by threadId, and then project it. Setting _id=0 means the default _id is ignored.
+def get_thread_by_id(threadId: str, userId: str):
+    thread = threads_collection.find({"_id": threadId,"userId":userId}, {"_id":0,"userId":1,"threadHeading":1})  #First, find the query by threadId, and then project it. Setting _id=0 means the default _id is ignored.
     if not thread:
         raise HTTPException(status_code=404, detail="Thread not found")
     thread_list=list(thread)

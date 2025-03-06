@@ -14,9 +14,9 @@ def get_thread_endPoint(userId: str):
     return get_thread(userId)
 
 
-@router.get("/thread/{threadId}")
-def get_thread_by_id_endPoint(threadId: str):
-    return get_thread_by_id(threadId)
+@router.get("/thread/{threadId},{userId}")
+def get_thread_by_id_endPoint(threadId: str, userId: str):
+    return get_thread_by_id(threadId, userId)
 
 
 

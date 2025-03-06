@@ -30,55 +30,59 @@ def create_update_user(user: UserMetaData):
         threads_collection.insert_one({
             "_id": str(uuid.uuid4()), 
             "userId": userData["_id"], 
-            "threadHeading": userData["threadHeading"]
         })
 
-        threadHeading = threads_collection.find_one(
-        {"userId": userData["_id"]}, 
-        {"_id": 1, "threadHeading": 1}
-    )
-
-        if not threadHeading.get("threadHeading"):
-            return ("didn't have a thread Heading in", threadHeading["_id"])
-        else:
-            insert_result = threads_collection.insert_one({
-            "_id": str(uuid.uuid4()), 
-            "userId": userData["_id"], 
-            "threadHeading": None
-        })
-        return ("new thread_id", insert_result.inserted_id)
-        
-    else:
-        threads_collection.update_one(
-            {"userId": userData["_id"]},
-            {"$set": {"threadHeading": userData["threadHeading"]}}
-        )
-
-        threadHeading = threads_collection.find_one(
-        {"userId": userData["_id"]}, 
-        {"_id": 1, "threadHeading": 1}
-    )
-
-        if not threadHeading.get("threadHeading"):
-            return ("didn't have a thread Heading in", threadHeading["_id"])
-        else:
-            return ("existing thread_id", threadHeading["_id"])
-
-    
-
-    # threadHeading = threads_collection.find_one(
+    #     threadHeading = threads_collection.find_one(
     #     {"userId": userData["_id"]}, 
     #     {"_id": 1, "threadHeading": 1}
     # )
-    
-    # print(threadHeading)
-    
-    # if not threadHeading.get("threadHeading"):
-    #     return ("didn't have a thread Heading in", threadHeading["_id"])
-    # else:
-    #     insert_result = threads_collection.insert_one({
+
+    #     if not threadHeading.get("threadHeading"):
+    #         return ("didn't have a thread Heading in", threadHeading["_id"])
+    #     else:
+    #         insert_result = threads_collection.insert_one({
     #         "_id": str(uuid.uuid4()), 
     #         "userId": userData["_id"], 
     #         "threadHeading": None
     #     })
     #     return ("new thread_id", insert_result.inserted_id)
+        
+    else:
+        threads_collection.update_one(
+            {"userId": userData["_id"]},
+            {"$set": {"userId": userData["_id"]}}
+        )
+
+    #     threadHeading = threads_collection.find_one(
+    #     {"userId": userData["_id"]}, 
+    #     {"_id": 1, "threadHeading": 1}
+    # )
+
+    #     if not threadHeading.get("threadHeading"):
+    #         return ("didn't have a thread Heading in", threadHeading["_id"])
+    #     else:
+    #         insert_result = threads_collection.insert_one({
+    #         "_id": str(uuid.uuid4()), 
+    #         "userId": userData["_id"], 
+    #         "threadHeading": None
+    #     })
+    #     return ("new thread_id", insert_result.inserted_id)
+
+    
+
+    threadHeading = threads_collection.find_one(
+        {"userId": userData["_id"]}, 
+        {"_id": 1, "threadHeading": 1}
+    )
+    
+    print(threadHeading)
+    
+    if not threadHeading.get("threadHeading"):
+        return ("didn't have a thread Heading in", threadHeading["_id"])
+    else:
+        insert_result = threads_collection.insert_one({
+            "_id": str(uuid.uuid4()), 
+            "userId": userData["_id"], 
+            "threadHeading": None
+        })
+        return ("new thread_id", insert_result.inserted_id)
