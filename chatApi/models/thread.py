@@ -1,5 +1,10 @@
 from pydantic import BaseModel
 
-class ThreadCreate(BaseModel):
+class getThreads(BaseModel):
     userId: str
-    threadHeading: str
+    organizationId: str
+
+class getThreadById(BaseModel):
+    userId: str
+    organizationId: str
+    threadId: str

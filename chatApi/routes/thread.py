@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from chatApi.models.thread import ThreadCreate
+from chatApi.models.thread import getThreads, getThreadById
 from chatApi.api.thread import  get_thread, get_thread_by_id
 
 router = APIRouter()
@@ -9,14 +9,14 @@ router = APIRouter()
 #     return create_thread(thread)
 
     
-@router.get("/user/thread/{userId}")
-def get_thread_endPoint(userId: str):
-    return get_thread(userId)
+@router.get("/user/thread/{userId},{organizationId}")
+def get_thread_endPoint(userId: str,organizationId: str):
+    return get_thread(userId,organizationId)
 
 
-@router.get("/thread/{threadId},{userId}")
-def get_thread_by_id_endPoint(threadId: str, userId: str):
-    return get_thread_by_id(threadId, userId)
+@router.get("/thread/{userId},{organizationId},{threadId}")
+def get_thread_by_id_endPoint(userId: str, organizationId: str, threadId: str):
+    return get_thread_by_id(userId, organizationId, threadId)
 
 
 
