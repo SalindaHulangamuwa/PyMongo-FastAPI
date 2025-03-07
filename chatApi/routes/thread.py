@@ -9,12 +9,12 @@ router = APIRouter()
 #     return create_thread(thread)
 
     
-@router.get("/user/thread/{userId},{organizationId}")
+@router.get("/user/thread/{userId}/{organizationId}")
 def get_thread_endPoint(userId: str,organizationId: str):
     return get_thread(userId,organizationId)
 
 
-@router.get("/thread/{userId},{organizationId},{threadId}")
+@router.get("/thread/{userId}/{organizationId}/{threadId}")
 def get_thread_by_id_endPoint(userId: str, organizationId: str, threadId: str):
     return get_thread_by_id(userId, organizationId, threadId)
 
